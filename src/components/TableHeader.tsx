@@ -1,9 +1,9 @@
 import * as React from "react";
-import { Row, Table } from "react-bootstrap";
+import { Form, Row, Table } from "react-bootstrap";
 import TableBody from "./TableBody";
 export const TableHeader = (props: any) => {
 
-  const { playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers } = props;
+  const { playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers, filter, setFilter, setFilterValue, filterValue } = props;
 
   console.log(props)
   React.useEffect(() => {
@@ -12,6 +12,32 @@ export const TableHeader = (props: any) => {
   return (
     <>
       <div>
+        <div>
+        <Form.Control
+                  as="select"
+                  style={{
+                    // backgroundColor: darkMode ? "#12161B" : "",
+                    // color: darkMode ? "#CFD5DC" : "",
+                    // border: darkMode ? '1px solid #2E3139' : "",
+                    // borderRadius: '4px',
+                    // height: '34px',
+                    // width: '100%',
+                    // fontSize: '13px'
+                  }}
+                  value={filterValue}
+                  onChange={(e) => {
+                      setFilterValue(e.target.value)
+                      localStorage.setItem('filter', e.target.value);
+                  }}>
+                  {
+                    filter.map((role: string, index: number) =>
+                      <option value={role} key={index}>
+                        {role}
+                      </option>
+                    )
+                  }
+                </Form.Control>
+        </div>
         <Table>
           <thead style={{ backgroundColor: 'black' }}>
             <tr >

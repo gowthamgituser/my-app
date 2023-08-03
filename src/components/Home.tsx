@@ -11,7 +11,9 @@ export const Home = (props: any) => {
     const [currentPage, setCurrentPage] = React.useState(1);
     const [startIndex, setStartIndex] = React.useState((currentPage - 1) * itemsPerPage);
     const [endIndex, setEndIndex] = React.useState(startIndex + itemsPerPage);
-    const [players, setPlayers] = React.useState([] as any)
+    const [players, setPlayers] = React.useState([] as any);
+    const [filter, setFilter] = React.useState([] as any);
+    const [filterValue, setFilterValue] = React.useState(localStorage.getItem('filter') || 'All');
 
     const handleNextPage = () => {
         setCurrentPage((prevPage) => prevPage + 1);
@@ -25,13 +27,16 @@ export const Home = (props: any) => {
     };
 
     const sortPlayers = (key: any) =>{
-        console.log(key)
         const sortedPlayers = playerList.sort((a:any,b: any)=>{
             return a[key] > b[key] ? 1 : -1;
         })
         setPlayerList([...sortedPlayers]);
     }
 
+    React.useEffect(()=>{
+        let filterList : any = ['All','batsman','bowler','allRounder','wicketKeeper'];
+        setFilter(filterList);
+    },[])
 
     React.useEffect(() => {
         (
@@ -44,9 +49,17 @@ export const Home = (props: any) => {
                         const startIndex = (currentPage - 1) * itemsPerPage;
                         const endIndex = startIndex + itemsPerPage;
                         const currentPageData = players.slice(startIndex, endIndex);
-                        setPlayerList(currentPageData);
+                        if(filterValue==='All'){
+                            setPlayerList(currentPageData)
+                        }
+                        else {
+                            let list = currentPageData.filter((list:any)=>{
+                                return list.type === filterValue;
+                            })
+                            setPlayerList(list);
+                        }
                         setIsLoading(false);
-                    }, 1000);
+                    }, 500);
 
                 } catch (error) {
                     console.error('Error while fetching and processing players:', error);
@@ -55,14 +68,15 @@ export const Home = (props: any) => {
             }
         )();
 
-    }, [currentPage])
+    }, [currentPage,filterValue])
+
 
 
 
     return (
         <>
             <div>
-                {isLoading ? <Loading /> : <TableHeader sortPlayers={sortPlayers} handlePageChange={handlePageChange} players={players} playerList={playerList} handleNextButton={handleNextPage} handlePrevButton={handlePrevPage} currentPage={currentPage} endIndex={endIndex} />}
+                {isLoading ? <Loading /> : <TableHeader filter={filter} filterValue={filterValue} setFilterValue={setFilterValue} setFilter={setFilter} sortPlayers={sortPlayers} handlePageChange={handlePageChange} players={players} playerList={playerList} handleNextButton={handleNextPage} handlePrevButton={handlePrevPage} currentPage={currentPage} endIndex={endIndex} />}
             </div>
         </>
     );
