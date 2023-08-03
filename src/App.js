@@ -1,11 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import {BrowserRouter as Router, Redirect, Route, Switch,Routes} from "react-router-dom";
+import Home from "./components/Home"
+import CricketerProfile from './components/CricketerProfile';
 
 function App() {
   return (
-    <div className="App">
-      Testing application
-    </div>
+    <Router>
+        <Switch>
+          <Route exact path="/my-app" component={Home}/>
+          <Route path="/my-app/:id" component={CricketerProfile}/>
+        </Switch>
+    </Router> 
   );
 }
 
