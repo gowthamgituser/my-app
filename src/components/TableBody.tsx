@@ -5,7 +5,11 @@ export const TableBody = (props: any) => {
 
     const { player, index } = props;
     const history = useHistory();
-
+    const date: any = new Date(player?.dob);
+    const today: any = new Date();
+    const ageInMilliseconds: any = today - date;
+    const ageInYears = ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000);
+    const age = Math.floor(ageInYears);
     React.useEffect(() => {
 
     }, [])
@@ -17,11 +21,14 @@ export const TableBody = (props: any) => {
                 }}>
                     {player?.name || '-'}
                 </td>
+                <td key={"row-21-" + index}>
+                    {player?.rank || '-'}
+                </td>
                 <td key={"row-2-" + index}>
                     {player?.type || '-'}
                 </td>
                 <td key={"row-3-" + index}>
-                    {player?.dob || '-'}
+                    {age || '-'}
                 </td>
                 <td key={"row-4-" + index}>
                     {player?.points || '-'}

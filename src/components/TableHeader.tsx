@@ -3,7 +3,7 @@ import { Row, Table } from "react-bootstrap";
 import TableBody from "./TableBody";
 export const TableHeader = (props: any) => {
 
-  const { playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange } = props;
+  const { playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers } = props;
 
   console.log(props)
   React.useEffect(() => {
@@ -15,14 +15,23 @@ export const TableHeader = (props: any) => {
         <Table>
           <thead style={{ backgroundColor: 'black' }}>
             <tr >
-              <th className="column-header">
+              <th className="column-header" onClick={()=>{
+                sortPlayers('name');
+              }}>
                 Name
+              </th>
+              <th className="column-header" onClick={()=>{
+                sortPlayers('rank');
+              }}>
+                Rank
               </th>
               <th className="column-header">
                 Role
               </th>
-              <th className="column-header">
-                DOB
+              <th className="column-header" onClick={()=>{
+                 sortPlayers('dob');
+              }}>
+                Age
               </th>
               <th className="column-header">
                 Points

@@ -77,6 +77,15 @@ export const CricketerProfile: React.FunctionComponent = (
 
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
                                 <div style={{ width: '50%', padding: '20px' }}>
+                                    <strong>Rank</strong>
+                                </div>
+                                <div style={{ width: '50%', padding: '20px' }}>
+                                    {profile.rank}
+                                </div>
+                            </div>
+
+                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
+                                <div style={{ width: '50%', padding: '20px' }}>
                                     <strong>Role</strong>
                                 </div>
                                 <div style={{ width: '50%', padding: '20px' }}>
@@ -86,10 +95,10 @@ export const CricketerProfile: React.FunctionComponent = (
 
                             <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    <strong>Age</strong>
+                                    <strong>Date of Birth</strong>
                                 </div>
                                 <div style={{ width: '50%' }}>
-                                    {profile.dob}
+                                    {new Date(profile.dob).toDateString()}
                                 </div>
                             </div>
 

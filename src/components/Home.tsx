@@ -24,6 +24,14 @@ export const Home = (props: any) => {
         setCurrentPage(pageNumber);
     };
 
+    const sortPlayers = (key: any) =>{
+        console.log(key)
+        const sortedPlayers = playerList.sort((a:any,b: any)=>{
+            return a[key] > b[key] ? 1 : -1;
+        })
+        setPlayerList([...sortedPlayers]);
+    }
+
 
     React.useEffect(() => {
         (
@@ -54,7 +62,7 @@ export const Home = (props: any) => {
     return (
         <>
             <div>
-                {isLoading ? <Loading /> : <TableHeader handlePageChange={handlePageChange} players={players} playerList={playerList} handleNextButton={handleNextPage} handlePrevButton={handlePrevPage} currentPage={currentPage} endIndex={endIndex} />}
+                {isLoading ? <Loading /> : <TableHeader sortPlayers={sortPlayers} handlePageChange={handlePageChange} players={players} playerList={playerList} handleNextButton={handleNextPage} handlePrevButton={handlePrevPage} currentPage={currentPage} endIndex={endIndex} />}
             </div>
         </>
     );
