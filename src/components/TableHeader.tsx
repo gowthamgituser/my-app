@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Form, Row, Table } from "react-bootstrap";
 import TableBody from "./TableBody";
+import Loading from "./Loading";
 export const TableHeader = (props: any) => {
 
-  const { playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers, filter, setFilter, setFilterValue, filterValue } = props;
+  const {isLoading, playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers, filter, setFilter, setFilterValue, filterValue } = props;
 
   console.log(props)
   React.useEffect(() => {
@@ -12,33 +13,35 @@ export const TableHeader = (props: any) => {
   return (
     <>
       <div>
-        <div>
-        <Form.Control
-                  as="select"
-                  style={{
-                    // backgroundColor: darkMode ? "#12161B" : "",
-                    // color: darkMode ? "#CFD5DC" : "",
-                    // border: darkMode ? '1px solid #2E3139' : "",
-                    // borderRadius: '4px',
-                    // height: '34px',
-                    // width: '100%',
-                    // fontSize: '13px'
-                  }}
-                  value={filterValue}
-                  onChange={(e) => {
-                      setFilterValue(e.target.value)
-                      localStorage.setItem('filter', e.target.value);
-                  }}>
-                  {
-                    filter.map((role: string, index: number) =>
-                      <option value={role} key={index}>
-                        {role}
-                      </option>
-                    )
-                  }
-                </Form.Control>
+        <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-end', width:'100%'}}>
+          <div style={{width:'16%'}}>
+            <Form.Control
+              as="select"
+              style={{
+                borderRadius: '4px',
+                height: '34px',
+                width: '100%',
+                fontSize: '13px'
+              }}
+              value={filterValue}
+              onChange={(e) => {
+                setFilterValue(e.target.value)
+                localStorage.setItem('filter', e.target.value);
+              }}>
+              {
+                filter.map((role: string, index: number) =>
+                  <option value={role} key={index}>
+                    {role}
+                  </option>
+                )
+              }
+            </Form.Control>
+          </div>
+          <div style={{width:'16%'}}>
+
+          </div>
         </div>
-        <Table>
+        {isLoading ? <Loading /> : <><Table>
           <thead style={{ backgroundColor: 'black' }}>
             <tr >
               <th className="column-header" onClick={()=>{
@@ -68,12 +71,14 @@ export const TableHeader = (props: any) => {
             </tr>
           </thead>
           <tbody>
-            {
-              playerList.map((player: any, index: any) => {
+          {playerList.length>0?<>
+            {playerList.map((player: any, index: any) => {
                 return (<TableBody index={index} player={player} />
                 )
               })
             }
+          </>:<>Not found</>
+          }
           </tbody>
         </Table>
 
@@ -97,7 +102,7 @@ export const TableHeader = (props: any) => {
           }} disabled={endIndex * currentPage >= players.length}>
             Next
           </button>
-        </div>
+        </div></>}
       </div>
     </>
   );

@@ -76,7 +76,7 @@ export const Home = (props: any) => {
     return (
         <>
             <div>
-                {isLoading ? <Loading /> : <TableHeader filter={filter} filterValue={filterValue} setFilterValue={setFilterValue} setFilter={setFilter} sortPlayers={sortPlayers} handlePageChange={handlePageChange} players={players} playerList={playerList} handleNextButton={handleNextPage} handlePrevButton={handlePrevPage} currentPage={currentPage} endIndex={endIndex} />}
+                 <TableHeader filter={filter} filterValue={filterValue} setFilterValue={setFilterValue} setFilter={setFilter} sortPlayers={sortPlayers} handlePageChange={handlePageChange} players={players} playerList={playerList} handleNextButton={handleNextPage} handlePrevButton={handlePrevPage} currentPage={currentPage} endIndex={endIndex} isLoading={isLoading} />
             </div>
         </>
     );
