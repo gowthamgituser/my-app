@@ -2,7 +2,7 @@ import * as React from "react";
 import getPlayers from "../dataFile/get-players"
 import Loading from './Loading';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLink, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useHistory } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
 

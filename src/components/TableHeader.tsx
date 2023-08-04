@@ -10,6 +10,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSort } from "@fortawesome/free-solid-svg-icons";
+
+
+
+const sortIcon = <FontAwesomeIcon size={'sm'} icon={faSort} color={'white'} />
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -69,22 +75,22 @@ export const TableHeader = (props: any) => {
               <Table sx={{ minWidth: 700 }} aria-label="customized table">
                 <TableHead>
                   <TableRow>
-                    <StyledTableCell onClick={() => {
+                    <StyledTableCell  style={{width:'10%'}} onClick={() => {
                       sortPlayers('name');
-                    }}>Name</StyledTableCell>
+                    }}>Name &nbsp;{sortIcon}</StyledTableCell>
 
-                    <StyledTableCell onClick={() => {
+                    <StyledTableCell style={{width:'5%'}} onClick={() => {
                       sortPlayers('rank');
                     }}>
-                      Rank
+                      Rank &nbsp;{sortIcon}
                     </StyledTableCell>
                     <StyledTableCell>
                       Role
                     </StyledTableCell>
-                    <StyledTableCell onClick={() => {
+                    <StyledTableCell  style={{width:'5%'}} onClick={() => {
                       sortPlayers('dob');
                     }}>
-                      Age
+                      Age &nbsp;{sortIcon}
                     </StyledTableCell>
                     <StyledTableCell>
                       Points

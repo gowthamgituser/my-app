@@ -47,7 +47,7 @@ export const TableBodyComponent = (props: any) => {
         <>
          
             <StyledTableRow key={"tr" + index}>
-                <StyledTableCell style={{ cursor: 'pointer', textDecoration: 'underline', color: '#0000EE' }} key={"row-1-" + index} onClick={() => {
+                <StyledTableCell style={{ cursor: 'pointer', textDecoration: 'underline', color: '#0000EE'}} key={"row-1-" + index} onClick={() => {
                     history.push(`/my-app/${player.id}`, { player });
                 }}>
                     {player?.name || '-'}
@@ -64,7 +64,7 @@ export const TableBodyComponent = (props: any) => {
                 <StyledTableCell key={"row-4-" + index}>
                     {player?.points || '-'}
                 </StyledTableCell>
-                <StyledTableCell key={"row-5-" + index}>
+                <StyledTableCell key={"row-5-" + index} style={{textAlign:'justify'}}>
                     {player?.description || '-'}
                 </StyledTableCell>
             </StyledTableRow>
