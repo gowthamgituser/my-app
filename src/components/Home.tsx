@@ -14,6 +14,7 @@ export const Home = (props: any) => {
     const [players, setPlayers] = React.useState([] as any);
     const [filter, setFilter] = React.useState([] as any);
     const [filterValue, setFilterValue] = React.useState(localStorage.getItem('filter') || 'All');
+    const [searchKey, setSearchKey] = React.useState('' as any);
 
     const handleNextPage = () => {
         setCurrentPage((prevPage) => prevPage + 1);
@@ -49,12 +50,12 @@ export const Home = (props: any) => {
                         const startIndex = (currentPage - 1) * itemsPerPage;
                         const endIndex = startIndex + itemsPerPage;
                         const currentPageData = players.slice(startIndex, endIndex);
-                        if(filterValue==='All'){
+                        if(filterValue==='All' && searchKey === ''){
                             setPlayerList(currentPageData)
                         }
                         else {
                             let list = currentPageData.filter((list:any)=>{
-                                return list.type === filterValue;
+                                return  list.type === filterValue || searchKey!=='' ?  list.name.toLowerCase().includes(searchKey.toLowerCase()) : null;
                             })
                             setPlayerList(list);
                         }
@@ -68,7 +69,7 @@ export const Home = (props: any) => {
             }
         )();
 
-    }, [currentPage,filterValue])
+    }, [currentPage,filterValue, searchKey])
 
 
 
@@ -77,6 +78,7 @@ export const Home = (props: any) => {
         <>
             <div>
                  <TableHeader filter={filter} filterValue={filterValue} 
+                    searchKey={searchKey} setSearchKey={setSearchKey}
                     setFilterValue={setFilterValue} setFilter={setFilter} 
                         sortPlayers={sortPlayers} handlePageChange={handlePageChange} 
                             players={players} playerList={playerList} handleNextButton={handleNextPage} 

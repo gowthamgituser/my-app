@@ -30,41 +30,66 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 export const TableHeader = (props: any) => {
 
-  const { isLoading, playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers, filter, setFilter, setFilterValue, filterValue } = props;
+  const { isLoading, playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers, filter, searchKey, setSearchKey, setFilterValue, filterValue } = props;
 
   return (
     <>
       <div>
-        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', width:'100%' }}>
           <div style={{ fontFamily: 'cursive', fontSize: '30px', fontWeight: 'bold', width: '50%', textDecoration:'underline' }}>
             Cricketers List
           </div>
-          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', width: '100%' }}>
-            <div style={{ width: '16%' }}>
+          <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', width: '50%' }}>
+            <div style={{ width: '100%' }}>
+              <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-start', alignContent:'center', alignItems:'center', width:'100%'}}>
+              <div>
+                Filter by Role : 
+              </div>
+              <div>
+                <Form.Control
+                  as="select"
+                  style={{
+                    borderRadius: '4px',
+                    height: '40px',
+                    width: '200%',
+                    fontSize: '13px'
+                  }}
+                  value={filterValue}
+                  onChange={(e) => {
+                    setFilterValue(e.target.value)
+                    localStorage.setItem('filter', e.target.value);
+                  }}>
+                  {
+                    filter.map((role: string, index: number) =>
+                      <option value={role} key={index}>
+                        {role.toUpperCase()}
+                      </option>
+                    )
+                  }
+                </Form.Control>
+              </div>
+              </div>
+            </div>
+            <div style={{ width: '100%' }}>
+              <div style={{display:'flex', flexDirection:'row', justifyContent:'flex-start', alignContent:'center', alignItems:'center', width:'100%'}}>
+              <div>
+              Search by Name :
+              </div>
+              <div>
               <Form.Control
-                as="select"
                 style={{
                   borderRadius: '4px',
                   height: '34px',
-                  width: '100%',
+                  width: '200%',
                   fontSize: '13px'
                 }}
-                value={filterValue}
+                value={searchKey}
                 onChange={(e) => {
-                  setFilterValue(e.target.value)
-                  localStorage.setItem('filter', e.target.value);
+                 setSearchKey(e.target.value)
                 }}>
-                {
-                  filter.map((role: string, index: number) =>
-                    <option value={role} key={index}>
-                      {role.toUpperCase()}
-                    </option>
-                  )
-                }
               </Form.Control>
-            </div>
-            <div style={{ width: '16%' }}>
-
+              </div>
+              </div>
             </div>
           </div>
         </div>
