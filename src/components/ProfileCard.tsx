@@ -7,29 +7,8 @@ import { Card } from "react-bootstrap";
 
 export const ProfileCard = (props: any) => {
 
-    const {player, updatePlayerIndex, index} = props;
-    const [playerList, setPlayerList] = React.useState([] as any);
-    const [isLoading, setIsLoading] = React.useState(true);
-
-    React.useEffect(() => {
-        // (
-        //     async()=>{
-        //         try {
-        //             const players = await getPlayers();
-                   
-        //             setTimeout(() => {
-        //                 setPlayerList(players);
-        //                 setIsLoading(false);
-        //               }, 1000); 
-                   
-        //         } catch (error) {
-        //             console.error('Error while fetching and processing players:', error);
-        //             setPlayerList([]);
-        //         }
-        //     }
-        // )();
-
-    }, [])
+    const {player, updatePlayerIndex, index} = props; 
+    
     return (
         <Grow  in={true} style={{ transformOrigin: '0 0 0' }}>
         <Card
@@ -45,16 +24,16 @@ export const ProfileCard = (props: any) => {
             <br/>
             <div className={'card-align'}>
               <div>
-                <strong>Name</strong>
+                <strong>Name :</strong>
               </div>
-              <div style={{marginLeft:'18%'}}>
+              <div style={{marginLeft:'18%', fontFamily:'fantasy', fontWeight:'bold'}}>
                 {player.name}
               </div>
             </div>
             <br/>
             <div className={'card-align'}>
               <div>
-                <strong>Points</strong>
+                <strong>Points :</strong>
               </div>
               <div style={{marginLeft:'18%'}}>
                 {player.points}
@@ -63,7 +42,7 @@ export const ProfileCard = (props: any) => {
             <br/>
             <div className={'card-align'}>
               <div>
-                <strong>Rank</strong>
+                <strong>Rank :</strong>
               </div>
               <div style={{marginLeft:'18%'}}>
                 &nbsp;&nbsp;{player.rank}

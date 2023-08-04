@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import ProfileCard from "./ProfileCard";
 
 
-const backIcon = <FontAwesomeIcon icon={faArrowLeft} color={'#267BEB'} />
+const backIcon = <FontAwesomeIcon size={'sm'} icon={faArrowLeft} color={'black'} />
 
 export const CricketerProfile: React.FunctionComponent = (
     { match, location }: any,
@@ -36,7 +36,7 @@ export const CricketerProfile: React.FunctionComponent = (
                     setPlayerList(players);
                     setProfile(playerProfile[0]);
                     const similarProfile = players.filter((player: any) => {
-                        return player.type === playerProfile[0].type && player.id !== id;
+                        return player.type === playerProfile[0]?.type && player.id !== id;
                     })
 
                     setSimilarPlayers(similarProfile);
@@ -60,76 +60,77 @@ export const CricketerProfile: React.FunctionComponent = (
                 {isLoading ? <Loading /> : <>
                     <div>
                         <div>
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignContent: 'center', width: '50%', marginLeft: '1%' }}>
-                                <div style={{ fontSize: '30px', fontWeight: 500 }}>
+                            <div  className="alignProfilev2" style={{ marginLeft: '1%' }}>
+                                <div style={{ fontSize: '30px', fontWeight:'bold', fontFamily:'cursive', textDecoration:'underline' }}>
                                     Cricketer Profile
                                 </div>
-                                <div style={{ cursor: 'pointer' }} onClick={() => {
+                                <div style={{ cursor: 'pointer', fontWeight:'bold' }} onClick={() => {
                                     history.push(`/my-app`)
                                 }}>
-                                    {backIcon} Back
+                                    {backIcon} Back to list
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
+                        
+                        <div className="profile-border" style={{backgroundColor:'#3E4F5'}}>
+                            <div className="alignProfile">
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    <strong>Name</strong>
+                                    <strong>Name :</strong>
                                 </div>
-                                <div style={{ width: '50%' }}>
+                                <div className="nameFont" style={{ width: '50%' }}>
                                     {profile.name}
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
+                            <div className="alignProfile">
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    <strong>Rank</strong>
+                                    <strong>Rank :</strong>
                                 </div>
                                 <div style={{ width: '50%', padding: '20px' }}>
                                     {profile.rank}
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
+                            <div className="alignProfile">
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    <strong>Role</strong>
+                                    <strong>Role :</strong>
                                 </div>
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    {profile.type}
+                                    {profile?.type?.toUpperCase()||'-'}
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
+                            <div className="alignProfile">
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    <strong>Date of Birth</strong>
+                                    <strong>Date of Birth :</strong>
                                 </div>
                                 <div style={{ width: '50%' }}>
                                     {new Date(profile.dob).toDateString()}
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
+                            <div className="alignProfile">
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    <strong>Points</strong>
+                                    <strong>Points :</strong>
                                 </div>
                                 <div style={{ width: '50%' }}>
                                     {profile.points}
                                 </div>
                             </div>
 
-                            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', alignItems: 'center', width: '50%' }}>
+                            <div className="alignProfile">
                                 <div style={{ width: '50%', padding: '20px' }}>
-                                    <strong>Description</strong>
+                                    <strong>Description :</strong>
                                 </div>
-                                <div style={{ width: '50%' }}>
+                                <div style={{ width: '50%', textAlign:'justify' }}>
                                     {profile.description}
                                 </div>
                             </div>
                         </div>
 
                         {similarPlayer.length ? <div style={{ marginTop: '3%', marginLeft: '1%' }}>
-                            <div>
-                                Similar Crickerts based on the Role
+                            <div style={{fontWeight:500}}>
+                                Similar Crickerts based on the role :
                             </div>
                             <div style={{marginTop:'1%'}}>
                                 {
@@ -146,8 +147,8 @@ export const CricketerProfile: React.FunctionComponent = (
                             </div>
                         </div> : <>
 
-                            <div>
-                                No Similar Players found
+                            <div style={{marginTop:'2%', color:'red', marginLeft:'2%'}}>
+                               --- No Similar Players found ---
                             </div>
 
                         </>}
