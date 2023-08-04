@@ -1,8 +1,12 @@
-# Getting Started with Create React App
+### Tech Stack used:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1.React Js 18
+2.TypeScript
+3.MaterialUI for Table Design
 
-## Available Scripts
+Project is deployed in the gh-pages
+
+Open:-  (https://gowthamgituser.github.io/my-app/)
 
 In the project directory, you can run:
 
