@@ -1,7 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
 import React from 'react';
-import ReactDOM from 'react-dom/client';
 import {BrowserRouter as Router, Redirect, Route, Switch,Routes} from "react-router-dom";
 import Home from "./components/Home"
 import CricketerProfile from './components/CricketerProfile';

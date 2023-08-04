@@ -1,7 +1,6 @@
 import * as React from "react";
 import getPlayers from "../dataFile/get-players"
 import TableHeader from "./TableHeader";
-import Loading from './Loading';
 
 export const Home = (props: any) => {
 

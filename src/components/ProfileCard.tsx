@@ -1,7 +1,4 @@
 import * as React from "react";
-import getPlayers from "../dataFile/get-players"
-import TableHeader from "./TableHeader";
-import Loading from './Loading';
 import { Grow } from "@material-ui/core";
 import { Card } from "react-bootstrap";
 

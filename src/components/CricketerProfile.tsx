@@ -10,7 +10,7 @@ import ProfileCard from "./ProfileCard";
 const backIcon = <FontAwesomeIcon size={'sm'} icon={faArrowLeft} color={'black'} />
 
 export const CricketerProfile: React.FunctionComponent = (
-    { match, location }: any,
+    { match }: any,
     props
 ) => {
     const {
