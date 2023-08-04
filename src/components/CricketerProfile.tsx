@@ -21,23 +21,29 @@ export const CricketerProfile: React.FunctionComponent = (
     const [profile, setProfile] = React.useState([] as any);
     const [similarPlayer, setSimilarPlayers] = React.useState([] as any);
     const [isLoading, setIsLoading] = React.useState(true);
+    const [playerList, setPlayerList] = React.useState([] as any)
 
 
     React.useEffect(() => {
         (
             async () => {
                 try {
+                    setIsLoading(true);
                     const players = await getPlayers();
                     const playerProfile = players.filter((player: any) => {
                         return id === player.id
                     })
+                    setPlayerList(players);
                     setProfile(playerProfile[0]);
                     const similarProfile = players.filter((player: any) => {
                         return player.type === playerProfile[0].type && player.id !== id;
                     })
 
                     setSimilarPlayers(similarProfile);
-                    setIsLoading(false);
+                    setTimeout(()=>{
+                        setIsLoading(false);
+                    },500)
+                    
                 } catch (error) {
                     console.error('Error while fetching and processing players:', error);
 
@@ -58,7 +64,7 @@ export const CricketerProfile: React.FunctionComponent = (
                                 <div style={{ fontSize: '30px', fontWeight: 500 }}>
                                     Cricketer Profile
                                 </div>
-                                <div style={{cursor:'pointer'}} onClick={()=>{
+                                <div style={{ cursor: 'pointer' }} onClick={() => {
                                     history.push(`/my-app`)
                                 }}>
                                     {backIcon} Back
@@ -121,19 +127,30 @@ export const CricketerProfile: React.FunctionComponent = (
                             </div>
                         </div>
 
-                        <div>
+                        {similarPlayer.length ? <div style={{ marginTop: '3%', marginLeft: '1%' }}>
                             <div>
                                 Similar Crickerts based on the Role
                             </div>
-                            <div>
+                            <div style={{marginTop:'1%'}}>
                                 {
-                                   similarPlayer.map((player:any)=>{
-                                    return <> <ProfileCard/>
-                                    </>
-                                   }) 
+                                    similarPlayer.map((player: any, index: any) => {
+                                        return <> <ProfileCard index={index} player={player}
+                                            updatePlayerIndex={(playerId: any) => {
+                                                const selectedPlayer = playerList.find((player: any) => player.id === playerId)
+                                                history.push(`/my-app/${selectedPlayer.id}`, { selectedPlayer });
+                                            }}
+                                        />
+                                        </>
+                                    })
                                 }
                             </div>
-                        </div>
+                        </div> : <>
+
+                            <div>
+                                No Similar Players found
+                            </div>
+
+                        </>}
 
                     </div>
 

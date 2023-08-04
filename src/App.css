@@ -77,3 +77,40 @@
     transform: rotate(360deg);
   }
 }
+
+.side-bar-card  {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  /* height: 140px; */
+  background: #FFFFFF;
+  box-shadow: 0 0 6px #4C95F650;
+  border-radius: 6px;
+  opacity: 1;
+  padding: 10px;
+  cursor: pointer;
+  text-align: left;
+
+  .card-body {
+    padding-top: 1px;
+  }
+}
+
+
+.side-bar-card-custom {
+  width: 320px;
+  height: 200px !important;
+  float: left;
+  text-align: left !important;
+}
+
+.new-card-width {
+  width: 320px !important;
+}
+
+.card-align{
+  display:flex;
+  flex-direction: row;
+  justify-content:flex-start;
+  align-items: center;
+}

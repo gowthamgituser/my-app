@@ -6,10 +6,6 @@ export const TableHeader = (props: any) => {
 
   const {isLoading, playerList, handleNextButton, handlePrevButton, currentPage, endIndex, players, handlePageChange, sortPlayers, filter, setFilter, setFilterValue, filterValue } = props;
 
-  console.log(props)
-  React.useEffect(() => {
-
-  }, [])
   return (
     <>
       <div>
@@ -38,7 +34,7 @@ export const TableHeader = (props: any) => {
             </Form.Control>
           </div>
           <div style={{width:'16%'}}>
-
+              
           </div>
         </div>
         {isLoading ? <Loading /> : <><Table>
